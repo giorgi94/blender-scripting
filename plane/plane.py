@@ -37,3 +37,31 @@ mesh_data.from_pydata(verts, [], faces)
 # Create the object and add it to the scene
 object_data = bpy.data.objects.new("Plane", mesh_data)
 bpy.context.scene.collection.objects.link(object_data)
+
+
+"""
+# get object
+
+# Get the name of the object to select
+name = "MyObjectName"
+
+# Get the object by name
+obj = bpy.data.objects.get(name)
+
+# Select the object if it exists
+if obj is not None:
+    obj.select_set(True)
+
+
+##################
+
+
+# Get the name of the objects to select
+name = "MyObjectName"
+
+# Loop over all objects and select those with the given name
+for obj in bpy.data.objects:
+    if obj.name == name:
+        obj.select_set(True)
+
+"""
