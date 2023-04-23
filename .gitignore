@@ -1,0 +1,15 @@
+/__pycache__/
+*.py[cod]
+*$py.class
+*.sqlite3
+*.rdb
+
+
+.DS_Store
+
+
+*.blend1
+
+*.local
+
+tests/
