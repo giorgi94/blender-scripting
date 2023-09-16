@@ -15,19 +15,26 @@ bpy.context.scene.collection.objects.link(plane)
 mesh.from_pydata(vertices, [], faces)
 mesh.update()
 
-# Get the first vertex of the plane
-vertex = plane.data.vertices[0]
+# Access the vertex you want to animate
+vertex_index_to_animate = (
+    1  # Change this to the index of the vertex you want to animate
+)
+vertex = plane.data.vertices[vertex_index_to_animate]
 
-# Create a keyframe animation for the vertex
-frame_start = 0
-frame_end = 100
-frame_interval = (frame_end - frame_start) / 5  # 5 seconds of animation
-keyframe_values = [(frame_start, 0), (frame_end, 1)]
 
-# Set up the keyframes for the Y coordinate of the vertex
-keyframe_points = [(frame_start, vertex.co.z), (frame_end, vertex.co.z + 1)]
-for i, (frame, value) in enumerate(keyframe_values):
-    bpy.context.scene.frame_set(frame)
-    vertex.co[2] = keyframe_points[i][1]
-    vertex.keyframe_insert(data_path="co", index=1)
-    vertex.keyframe_insert(data_path="co", index=2)
+vertex.keyframe_insert(data_path="co", frame=1, index=0)
+vertex.keyframe_insert(data_path="co", frame=1, index=1)
+vertex.keyframe_insert(data_path="co", frame=1, index=2)
+
+frame_number = 50
+
+# Set the z-coordinate at frame 100 (ending point)
+bpy.context.scene.frame_set(frame_number)
+vertex.co.z = 1
+vertex.keyframe_insert(data_path="co", frame=frame_number, index=2)
+
+
+frame_number = 100
+bpy.context.scene.frame_set(frame_number)
+vertex.co.x = 7
+vertex.keyframe_insert(data_path="co", frame=frame_number, index=0)
